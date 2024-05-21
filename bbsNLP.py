@@ -13,11 +13,12 @@ def nlp(csv_file):
 
     # 读取文本数据，读取每行的评论标题
     orig_comments=pd.read_csv(csv_file)
-    print('原始数据:')
+
+    # print('原始数据:')
     # 输出前五行
     # print(orig_comments.head())
-    print(orig_comments)
-    print()
+    # print(orig_comments)
+    # print()
 
     # 使用SnowNLP计算对每条标题的文字评估情绪得分
     # 新建“情绪”一列
@@ -42,4 +43,4 @@ def nlp(csv_file):
 
 
 if __name__ == '__main__':
-    nlp('bbs数据清洗.csv')
+    nlp('bbs18782037.csv')
