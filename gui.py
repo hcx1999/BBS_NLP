@@ -8,12 +8,11 @@ from openpyxl import Workbook
 from openpyxl.utils.dataframe import dataframe_to_rows
 import os
 
-from bbs01 import *
+from bbsWash import *
 from bbsNLP import *
 from gettop import *
 from gui import *
 from main import web
-
 
 def GUI():
 
@@ -28,8 +27,8 @@ def GUI():
     root.style.theme_use('classic')
 
     # 创建一个文本框
-    text = tk.Text(frame, height = 25, width = 100)
-    text.config(font = ("Helvetica", 16), background = "#c2dbf8", foreground = "#d52f9b")
+    text = tk.Text(frame, height = 30, width = 120)
+    text.config(font = ("KaiTi", 15), background = "#c2dbf8", foreground = "#d52f9b")
     text.pack(fill = tk.BOTH, expand = True)
 
     # 统计10个页面
@@ -57,16 +56,16 @@ def GUI():
 
     # 制作柱形图
     for i in range(10):
-        text.insert(tk.END, "{:30}   {:30.3}\t".format(title[i], sum(lst[i].values) / len(lst[i].values)))
+        text.insert(tk.END, "{:25}{:25.3}\t".format(title[i], sum(lst[i].values) / len(lst[i].values)))
 
         lst[i].button1 = tk.Button(frame, text = "查看统计", command = lst[i].show_image)
-        lst[i].button1.config(font = ("Helvetica", 13), background = "pink", foreground = "white")
+        lst[i].button1.config(font = ("KaiTi", 13), background = "pink", foreground = "white")
 
         lst[i].button2 = tk.Button(frame, text = "查看详情", command = lst[i].show_csv)
-        lst[i].button2.config(font = ("Helvetica", 13), background = "purple", foreground = "white")
+        lst[i].button2.config(font = ("KaiTi", 13), background = "purple", foreground = "white")
 
         lst[i].button3 = tk.Button(frame, text = "查看网站", command = lst[i].show_url)
-        lst[i].button3.config(font = ("Helvetica", 13), background = "grey", foreground = "white")
+        lst[i].button3.config(font = ("KaiTi", 13), background = "grey", foreground = "white")
 
         # 在Text组件中创建一个虚拟窗口，并在这个窗口中放置按钮，尽量不要使用pack()
         text.window_create(tk.END, window = lst[i].button1)
