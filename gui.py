@@ -1,12 +1,8 @@
-import matplotlib.pyplot as plt
+import os
+import shutil
+
 import tkinter as tk
 from tkinter import ttk
-from PIL import Image, ImageTk
-import webbrowser
-import pandas as pd
-from openpyxl import Workbook
-from openpyxl.utils.dataframe import dataframe_to_rows
-import os
 
 from bbsWash import *
 from bbsNLP import *
@@ -16,8 +12,17 @@ from main import web
 
 def GUI():
 
+    # 工作区创建文件夹
+    os.mkdir('ima')
+    os.mkdir('csv')
+
     # 创建主窗口和Frame
     root = tk.Tk()
+    # 获取屏幕的宽度和高度
+    screen_width = root.winfo_screenwidth()
+    screen_height = root.winfo_screenheight()
+    # 窗口框架
+    root.state('zoomed')
     root.title("未名BBS情绪分析")
     frame = tk.Frame(root)
     frame.pack()
@@ -27,7 +32,7 @@ def GUI():
     root.style.theme_use('classic')
 
     # 创建一个文本框
-    text = tk.Text(frame, height = 30, width = 120)
+    text = tk.Text(frame, height = screen_height, width = screen_width)
     text.config(font = ("KaiTi", 15), background = "#c2dbf8", foreground = "#d52f9b")
     text.pack(fill = tk.BOTH, expand = True)
 
@@ -74,9 +79,17 @@ def GUI():
         text.insert(tk.END, '\n\n')
 
     # 绑定窗口关闭事件
-    root.protocol("WM_DELETE_WINDOW", lambda: exit())
+    root.protocol("WM_DELETE_WINDOW", close_win)
     # 启动事件循环
     root.mainloop()
+
+def close_win():
+
+    # 删除文件夹及其所有内容
+    shutil.rmtree('csv')
+    shutil.rmtree('ima')
+
+    exit()
 
 if __name__ == '__main__':
     GUI()

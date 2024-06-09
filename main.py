@@ -1,3 +1,11 @@
+import os
+import matplotlib.pyplot as plt
+
+from PIL import Image, ImageTk
+import webbrowser
+import pandas as pd
+from openpyxl import Workbook
+from openpyxl.utils.dataframe import dataframe_to_rows
 from gui import *
 
 class web:
